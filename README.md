@@ -1,6 +1,8 @@
 # From Zero to Hero VnV Bootcamp
 VnV Bootcamp for ITJuana pre-work, documentation and other tools
 
+Code created during bootcamp will be uploaded here so you can download
+
 Previous to Bootcamp come ready with the following basic concepts:
 Bootcamp basic concepts
  
