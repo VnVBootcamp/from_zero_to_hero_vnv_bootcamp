@@ -6,13 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class AdvancedWebComponents {
 
     public static void main(String[] args) {
 
         //For Windows
         //System.setProperty("webdriver.chrome.driver","C:\\folder\\chromedriver.exe");
-        selectDeselectDropDown();
+        fakeDropDown();
     }
 
     private static void openBrowser(WebDriver chromeDriver, String baseUrl){
@@ -76,12 +78,32 @@ public class AdvancedWebComponents {
         if (isMultipleOption) {
             myDropDown.selectByIndex(1);
         } else {
-            String previousSelectedOption = myDropDown.getFirstSelectedOption().getText();
-            System.out.println("Selected option is: " + previousSelectedOption);
-            myDropDown.selectByIndex(2);
-            System.out.println("Selected option is: " + myDropDown.getFirstSelectedOption().getText());
-           myDropDown.selectByVisibleText(previousSelectedOption);
+            String previousSelectedOption = myDropDown.getFirstSelectedOption().getText(); // <- Saving previous selected option
+            System.out.println("Previous selected option is: " + previousSelectedOption); // <- Printing on console previous selected option
+            myDropDown.selectByIndex(2); // <- Select third option
+            System.out.println("Selected option is: " + myDropDown.getFirstSelectedOption().getText()); // <- Printing third selected option
+            myDropDown.selectByIndex(0); // <- Deselecting the option (returning to previous selectedf option)
         }
+
+        chromeDriver.quit();
+    }
+
+    private static void fakeDropDown() {
+        //For MacOS
+        System.setProperty("webdriver.chrome.driver","/users/jxr20920/chromedriver");
+        WebDriver chromeDriver = new ChromeDriver();
+        chromeDriver.get("https://demoqa.com/automation-practice-form");
+
+        chromeDriver.manage().window().fullscreen();
+
+        //final String DD_STATE_XPATH = "//div[@id='state']";
+        final String DD_OPTIONS_XPATH = "//div[@id='state']/span";
+        final String DD_OPTION_RAJASTHAN_XPATH = "//*[contains(@text,'Rajasthan')]";
+
+        WebElement fakeDropDown = chromeDriver.findElement(By.id("state"));
+        fakeDropDown.click();
+        List<WebElement> fakeDropDownOptions = chromeDriver.findElements(By.xpath(DD_OPTIONS_XPATH));
+        WebElement ddOptionRajasthan = chromeDriver.findElement(By.xpath(DD_OPTION_RAJASTHAN_XPATH));
 
         chromeDriver.quit();
     }
