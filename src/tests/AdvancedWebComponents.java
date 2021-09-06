@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AdvancedWebComponents {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //For Windows
         //System.setProperty("webdriver.chrome.driver","C:\\folder\\chromedriver.exe");
@@ -88,7 +88,7 @@ public class AdvancedWebComponents {
         chromeDriver.quit();
     }
 
-    private static void fakeDropDown() {
+    private static void fakeDropDown() throws InterruptedException {
         //For MacOS
         System.setProperty("webdriver.chrome.driver","/users/jxr20920/chromedriver");
         WebDriver chromeDriver = new ChromeDriver();
@@ -100,11 +100,11 @@ public class AdvancedWebComponents {
         final String DD_OPTIONS_XPATH = "//div[@id='state']/span";
         final String DD_OPTION_RAJASTHAN_XPATH = "//*[contains(@text,'Rajasthan')]";
 
-        WebElement fakeDropDown = chromeDriver.findElement(By.id("state"));
-        fakeDropDown.click();
-        List<WebElement> fakeDropDownOptions = chromeDriver.findElements(By.xpath(DD_OPTIONS_XPATH));
-        WebElement ddOptionRajasthan = chromeDriver.findElement(By.xpath(DD_OPTION_RAJASTHAN_XPATH));
-
+        WebElement fakeDropDown = chromeDriver.findElement(By.xpath("//input[@id='react-select-3-input']"));
+        fakeDropDown.sendKeys("Rajasthan");
+        Thread.sleep(1000);
+        WebElement fakeDropOption = chromeDriver.findElement(By.xpath("//div[contains(@id,'react-select')]"));
+        fakeDropOption.click();
         chromeDriver.quit();
     }
 }
