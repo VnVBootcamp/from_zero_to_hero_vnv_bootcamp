@@ -21,33 +21,9 @@ public class AdvancedWebComponents {
         chromeDriver.get(baseUrl);
     }
 
-//    private static void openGlobalSQAFormExample(){
-//        openBrowser("https://www.globalsqa.com/samplepagetest/");
-//    }
-
     private static void openSeleniumEasyDropDownExample(WebDriver driver){
         openBrowser(driver, "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
     }
-
-//    private static void openDemoQAForm(){
-//        openBrowser("https://demoqa.com/automation-practice-form");
-//    }
-//
-//    private static void openSeleniumEasyOtherDropDown(){
-//        openBrowser("https://www.seleniumeasy.com/test/table-search-filter-demo.html");
-//    }
-//
-//    private static void openSeleniumEasyTableExample(){
-//        openBrowser("https://www.seleniumeasy.com/test/jquery-dual-list-box-demo.html");
-//    }
-//
-//    private static void openSeleniumEasyDatePicker(){
-//        openBrowser("https://www.seleniumeasy.com/test/bootstrap-date-picker-demo.html");
-//    }
-//
-//    private static void openDemoQABooksListExample(){
-//        openBrowser("https://demoqa.com/books");
-//    }
 
     private static void dropDownSelectByValue(Select select, String value){
         select.selectByValue(value);
